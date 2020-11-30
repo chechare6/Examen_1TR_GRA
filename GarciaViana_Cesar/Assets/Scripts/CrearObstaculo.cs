@@ -7,7 +7,7 @@ public class CrearObstaculo : MonoBehaviour
 {   
     [SerializeField] Text Tiempo;
     [SerializeField] Text ContadorColumnas;
-    private int contador;
+    public int contador;
     private float tiempo =0;
     private float segundos =0;
     
