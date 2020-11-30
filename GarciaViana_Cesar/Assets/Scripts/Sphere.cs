@@ -8,7 +8,7 @@ public class Sphere : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 5f;
+        speed = 15f;
     }
 
     // Update is called once per frame
