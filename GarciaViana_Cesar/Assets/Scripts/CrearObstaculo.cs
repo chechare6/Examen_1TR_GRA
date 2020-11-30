@@ -1,24 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CrearObstaculo : MonoBehaviour
-{
+{   
+    [SerializeField] Text ContadorColumnas;
+    private int contador;
     [SerializeField] GameObject Obstaculo;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("ObstaculoCoroutine");
+       StartCoroutine("ObstaculoCoroutine");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
-        {
-            GenerarObstaculo();
-        }
+        //AumentoDificultad();
+        ContadorColumnas.text = "Nº de columnas: " + contador;    
     }
 
    void GenerarObstaculo(){
@@ -32,10 +33,18 @@ public class CrearObstaculo : MonoBehaviour
 
     IEnumerator ObstaculoCoroutine()
     {
-        for(int n=0; ; n++){
-            
+        for(contador=1;contador<=5 ; contador++){
+            GenerarObstaculo();
+            yield return new WaitForSeconds(2);
+        }
+        for(contador=contador; contador <= 10 && contador>5; contador++){
             GenerarObstaculo();
             yield return new WaitForSeconds(1);
         }
+        for(contador=contador; contador>10;contador++){
+            GenerarObstaculo();
+            yield return new WaitForSeconds(0.5f);
+        }
     }
+
 }
