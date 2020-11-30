@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class CrearObstaculo : MonoBehaviour
 {   
+    [SerializeField] Text Tiempo;
     [SerializeField] Text ContadorColumnas;
     private int contador;
+    private float tiempo =0;
+    private float segundos =0;
+    
     [SerializeField] GameObject Obstaculo;
 
     // Start is called before the first frame update
@@ -17,9 +21,8 @@ public class CrearObstaculo : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        //AumentoDificultad();
-        ContadorColumnas.text = "Nº de columnas: " + contador;    
+    {        
+        TextoUI();
     }
 
    void GenerarObstaculo(){
@@ -45,6 +48,14 @@ public class CrearObstaculo : MonoBehaviour
             GenerarObstaculo();
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    void TextoUI()
+    {
+        tiempo += Time.deltaTime;
+        segundos = tiempo % 60;
+        ContadorColumnas.text = "Nº de columnas: " + contador; 
+        Tiempo.text = "Tiempo jugado: " + segundos.ToString("f1") + " segs";
     }
 
 }
