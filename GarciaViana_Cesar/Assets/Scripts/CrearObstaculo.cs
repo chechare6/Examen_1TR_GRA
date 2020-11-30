@@ -8,8 +8,10 @@ public class CrearObstaculo : MonoBehaviour
     [SerializeField] Text Tiempo;
     [SerializeField] Text ContadorColumnas;
     public int contador;
+    public int nColumnas;
     private float tiempo =0;
     private float segundos =0;
+    [SerializeField] Collider other;
     
     [SerializeField] GameObject Obstaculo;
 
@@ -23,6 +25,7 @@ public class CrearObstaculo : MonoBehaviour
     void Update()
     {        
         TextoUI();
+        //OnTriggerEnter(other);
     }
 
    void GenerarObstaculo(){
@@ -40,22 +43,25 @@ public class CrearObstaculo : MonoBehaviour
             GenerarObstaculo();
             yield return new WaitForSeconds(2);
         }
-        for(contador=contador; contador <= 10 && contador>5; contador++){
+        for(contador=6; contador <= 10 && contador>5; contador++){
             GenerarObstaculo();
             yield return new WaitForSeconds(1);
         }
-        for(contador=contador; contador>10;contador++){
+        for(contador=11; contador>10;contador++){
             GenerarObstaculo();
             yield return new WaitForSeconds(0.5f);
         }
     }
-
     void TextoUI()
     {
+        nColumnas = contador;
+
         tiempo += Time.deltaTime;
         segundos = tiempo % 60;
-        ContadorColumnas.text = "Nº de columnas: " + contador; 
+        ContadorColumnas.text = "Nº de columnas: " + nColumnas; 
         Tiempo.text = "Tiempo jugado: " + segundos.ToString("f1") + " segs";
     }
+
+    
 
 }
